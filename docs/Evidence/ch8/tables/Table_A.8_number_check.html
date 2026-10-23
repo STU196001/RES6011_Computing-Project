@@ -1,0 +1,288 @@
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Claim in text</th>
+      <th>Text value</th>
+      <th>Your data</th>
+      <th>Result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>SARIMA median MAPE</td>
+      <td>7.27</td>
+      <td>7.274</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>LSTM median MAPE</td>
+      <td>12.37</td>
+      <td>12.371</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>LSTM mean MAPE</td>
+      <td>24.39</td>
+      <td>24.394</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>SARIMA Q1</td>
+      <td>6.45</td>
+      <td>6.528</td>
+      <td>CHECK</td>
+    </tr>
+    <tr>
+      <td>SARIMA Q3</td>
+      <td>8.52</td>
+      <td>8.489</td>
+      <td>CHECK</td>
+    </tr>
+    <tr>
+      <td>LSTM Q1</td>
+      <td>9.76</td>
+      <td>9.836</td>
+      <td>CHECK</td>
+    </tr>
+    <tr>
+      <td>LSTM Q3</td>
+      <td>18.01</td>
+      <td>17.909</td>
+      <td>CHECK</td>
+    </tr>
+    <tr>
+      <td>stations with SARIMA MAPE &lt; 10%</td>
+      <td>45</td>
+      <td>45.0</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>SARIMA mean RMSE</td>
+      <td>45261</td>
+      <td>45261.153</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>LSTM mean RMSE</td>
+      <td>81632</td>
+      <td>81631.609</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>SARIMA mean MAE</td>
+      <td>37692</td>
+      <td>37692.056</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>LSTM mean MAE</td>
+      <td>71748</td>
+      <td>71747.992</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>SARIMA best station</td>
+      <td>Gold Souq</td>
+      <td>Gold Souq</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>SARIMA best MAPE</td>
+      <td>4.5</td>
+      <td>4.494</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>SARIMA worst station</td>
+      <td>EXPO</td>
+      <td>EXPO</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>SARIMA worst MAPE</td>
+      <td>29.7</td>
+      <td>29.652</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>SARIMA wins (51 stations)</td>
+      <td>47</td>
+      <td>47.0</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>LSTM wins</td>
+      <td>4</td>
+      <td>4.0</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>every LSTM win margin &lt; 2 points</td>
+      <td>True</td>
+      <td>1.0</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>LSTM wins with SARIMA error 7.3-9.6% (text: three)</td>
+      <td>3</td>
+      <td>3.0</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>stations where LSTM lost by about one point or less (text: five)</td>
+      <td>5</td>
+      <td>5.0</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>Wilcoxon p &lt; 0.001 (1 = true)</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>rank-biserial r</td>
+      <td>0.95</td>
+      <td>0.955</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>BurJuman SARIMA rank (best=1)</td>
+      <td>3</td>
+      <td>3.0</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>World Trade Centre rank from worst</td>
+      <td>8</td>
+      <td>8.0</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>BurJuman SARIMA MAPE</td>
+      <td>4.8</td>
+      <td>4.756</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>BurJuman LSTM MAPE</td>
+      <td>9.7</td>
+      <td>9.693</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>World Trade Centre SARIMA MAPE</td>
+      <td>10.7</td>
+      <td>10.692</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>World Trade Centre LSTM MAPE</td>
+      <td>21.3</td>
+      <td>21.293</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>EXPO SARIMA MAPE</td>
+      <td>29.7</td>
+      <td>29.652</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>EXPO LSTM MAPE</td>
+      <td>435.1</td>
+      <td>435.095</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>Jumeirah Golf Estates SARIMA MAPE</td>
+      <td>10.9</td>
+      <td>10.933</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>Jumeirah Golf Estates LSTM MAPE</td>
+      <td>61.2</td>
+      <td>61.162</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>Energy SARIMA MAPE</td>
+      <td>14.2</td>
+      <td>14.168</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>Energy LSTM MAPE</td>
+      <td>90.4</td>
+      <td>90.397</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>2018-19 minimum within 14.5-15.5M</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>2018-19 maximum within 17.5-18.8M</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>2023 minimum within 23.5-25.5M</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>2023 maximum within 28.5-29.8M</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>peak month is March 2022</td>
+      <td>2022-03</td>
+      <td>2022-03</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>seasonal swing (percent of station mean)</td>
+      <td>21</td>
+      <td>20.832</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>peak month (3 = March)</td>
+      <td>3</td>
+      <td>3.0</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>trough month (9 = September)</td>
+      <td>9</td>
+      <td>9.0</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>median index March</td>
+      <td>1.13</td>
+      <td>1.13</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>median index September</td>
+      <td>0.87</td>
+      <td>0.867</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>June-September medians all below 1 (1 = true)</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>OK</td>
+    </tr>
+  </tbody>
+</table>

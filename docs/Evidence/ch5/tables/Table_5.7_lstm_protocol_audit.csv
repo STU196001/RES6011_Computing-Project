@@ -1,0 +1,7 @@
+Station,SARIMA (6-step),LSTM (a) as run,LSTM (b) train-only scaler,LSTM (c) recursive 6-step
+BurJuman,4.8,12.6,11.7,39.4
+Etisalat,7.9,5.0,6.2,8.4
+Ibn Battuta,9.6,11.1,7.6,11.7
+World Trade Centre,10.7,27.1,32.0,53.3
+Energy,14.2,87.5,67.3,257.7
+Union,5.4,12.7,18.5,34.1

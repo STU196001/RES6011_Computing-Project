@@ -1,0 +1,54 @@
+station,config,MAPE,n_months
+EXPO Metro Station,seasonal_111_111,29.68129199538329,42
+World Trade Centre Metro Station,seasonal_111_111,28.0908222464037,68
+Dubai Internet City Metro Station,nonseasonal_arima111,15.737458968899906,68
+Energy Metro Station,nonseasonal_arima111,14.398482830425804,68
+Nakheel Metro Station,nonseasonal_ar1,13.71970894961553,68
+DAMAC Properties Metro Station,nonseasonal_ar1,12.924783414871586,68
+Dubai Investment Park Metro Station,seasonal_111_111,12.387896744432908,42
+Jumeirah Golf Estates Metro Station,nonseasonal_arima111,11.05188079760451,42
+Danube Metro Station,nonseasonal_arima111,10.834438634224524,68
+DMCC Metro Station,nonseasonal_ar1,10.002573384092878,68
+Al Jadaf Metro Station,nonseasonal_arima111,9.824062358761248,68
+Ibn Battuta Metro Station,nonseasonal_arima111,9.616210899688188,68
+Burj Khalifa/Dubai Mall Metro Station,seasonal_111_111,9.388073755045582,68
+Financial Centre Metro Station,nonseasonal_arima111,8.641347763235755,68
+Salah Al Din Metro Station,nonseasonal_arima111,8.607468348241722,68
+Oud Metha Metro Station,nonseasonal_ar1,8.420167568832081,68
+Al Furjan Metro Station,seasonal_111_111,8.400259302666717,43
+Mashreq Metro Station,nonseasonal_ar1,8.399303836532072,68
+Mall of the Emirates Metro Station,nonseasonal_ar1,8.242807965490138,68
+GGICO Metro Station,nonseasonal_ar1,8.113267070386463,68
+The Gardens Metro Station,nonseasonal_arima111,7.941008784294003,40
+Discovery Gardens Metro Station,nonseasonal_arima111,7.8821897522123905,40
+Etisalat Metro Station,nonseasonal_arima111,7.873402686894718,68
+UAE Exchange Metro Station,nonseasonal_arima111,7.494020741703132,68
+Emirates Towers Metro Station,nonseasonal_arima111,7.368727898230253,68
+Emirates Metro Station,nonseasonal_arima111,7.34831864700133,68
+Noor Bank Metro Station,nonseasonal_ar1,7.308381171407715,68
+Al Nahda Metro Station,seasonal_111_111,7.293798266419123,68
+Abu Baker Al Siddique Metro Station,nonseasonal_arima111,7.274073520561392,68
+Stadium Metro Station,nonseasonal_arima111,7.219460501788283,68
+Rashidiya Metro Station,nonseasonal_arima111,7.210711741174356,68
+Al Fahidi Metro Station,seasonal_111_111,7.202669049791856,68
+First Abu Dhabi Bank Metro Station,nonseasonal_ar1,7.09728485740314,68
+Dubai Airport Free Zone Metro Station,nonseasonal_arima111,6.934223329424095,68
+Jabal Ali Metro Station,seasonal_111_111,6.8195576700303695,68
+Al Ghubaiba Metro Station,nonseasonal_arima111,6.759632907463351,68
+Abu Hail Metro Station,nonseasonal_arima111,6.743128352463636,68
+Dubai Healthcare City Metro Station,nonseasonal_arima111,6.723186834258531,68
+Al Ras Metro Station,nonseasonal_ar1,6.628915828449762,68
+Business Bay Metro Station,nonseasonal_ar1,6.6134565820199,68
+ADCB Metro Station,nonseasonal_arima111,6.545402912966207,68
+Al Qiyadah Metro Station,nonseasonal_ar1,6.440724953693971,68
+Airport Terminal 3 Metro Station,nonseasonal_arima111,6.213669624265485,68
+Al Qusais Metro Station,nonseasonal_arima111,6.207180644943982,68
+Airport Terminal 1 Metro Station,seasonal_110_110,6.057199234248749,68
+Deira City Centre Metro Station,nonseasonal_ar1,5.930727418642661,68
+Al Rigga Metro Station,nonseasonal_arima111,5.8161662980314786,68
+Union Metro Station,nonseasonal_ar1,5.736007855198342,68
+Baniyas Square Metro Station,nonseasonal_arima111,5.60499303074378,68
+Al Jafiliya Metro Station,nonseasonal_arima111,5.159185555162912,68
+Creek Metro Station,nonseasonal_arima111,4.7596213803921374,68
+BurJuman Metro Station,nonseasonal_arima111,4.755642665747365,68
+Gold Souq Metro Station,nonseasonal_arima111,4.494345361259971,68

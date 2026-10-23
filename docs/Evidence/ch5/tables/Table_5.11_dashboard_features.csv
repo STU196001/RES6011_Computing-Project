@@ -1,0 +1,15 @@
+Dashboard feature,Requirement,Evidence
+53-station schematic map,FR1,Figure 5.14
+Click or dropdown station selection,FR2,Figure 5.14
+Historical ridership view,FR3,Figure 5.14
+1-12 month forecast horizon,FR4,Figure 5.14
+SARIMA/LSTM toggle,FR5,Figure 5.14
+Confidence interval (SARIMA),FR6,Figure 5.14
+Recommendation badge from holdout MAPE,FR7,Figure 5.14
+Sortable comparison table,FR8,Figure 5.16
+Insights tab,FR9,Figure 5.17
+MAPE distribution (box plot),FR10,Figure 5.16
+Graceful LSTM fallback,NFR3,Figure 5.15
+Models and data pre-loaded at start-up,NFR5,Code Snippet 5.5
+No horizontal scroll at 1366 x 768,NFR4,Not yet formally tested (Chapter 6)
+Map legible at 1280 px and above,NFR6,Not yet formally tested (Chapter 6)

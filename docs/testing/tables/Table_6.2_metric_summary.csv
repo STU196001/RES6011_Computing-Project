@@ -1,0 +1,7 @@
+Measure,SARIMA,LSTM
+Stations scored,53,51
+Median MAPE (%),7.27,12.37
+Mean MAPE (%),8.2,24.39
+Mean RMSE (trips),"45,261","81,632"
+Mean MAE (trips),"37,692","71,748"
+Head-to-head wins (51 stations),47,4

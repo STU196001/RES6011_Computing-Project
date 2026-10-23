@@ -1,0 +1,42 @@
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Version</th>
+      <th>Approach</th>
+      <th>Stations scored</th>
+      <th>Median MAPE (%)</th>
+      <th>Mean MAPE (%)</th>
+      <th>Failed</th>
+      <th>Note</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>v1</td>
+      <td>4 fixed, structurally diverse configurations; holdout-selected</td>
+      <td>53</td>
+      <td>7.31</td>
+      <td>8.75</td>
+      <td>0</td>
+      <td>Not a true grid search</td>
+    </tr>
+    <tr>
+      <td>v2</td>
+      <td>auto_arima exhaustive search (stepwise=False); top-5 by AIC; holdout-selected</td>
+      <td>46</td>
+      <td>8.13</td>
+      <td>8.68</td>
+      <td>7</td>
+      <td>search_failed where NaN gaps existed (e.g. Al Furjan, Discovery Gardens)</td>
+    </tr>
+    <tr>
+      <td>Final</td>
+      <td>Union of 4 fixed + top-5 AIC (up to 9 per station); linear interpolation of gaps</td>
+      <td>53</td>
+      <td>7.27</td>
+      <td>8.20</td>
+      <td>0</td>
+      <td>7 stations interpolated</td>
+    </tr>
+  </tbody>
+</table>

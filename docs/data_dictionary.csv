@@ -1,0 +1,12 @@
+Column,Data Type,Example Value,Null Count,Unique Values
+metro_station,str,ADCB Metro Station,0,53
+month,str,Jan,0,12
+trips,int64,576653,0,3373
+year,int64,2018,0,6
+load_timestamp,str,2018-03-07T15:45:02.000Z,0,68
+month_num,int64,1,0,12
+date,str,2018-01-01,0,68
+line,str,Red,0,4
+latitude,float64,25.2445099,0,53
+longitude,float64,55.2981834,0,53
+month_name,str,Jan,0,12

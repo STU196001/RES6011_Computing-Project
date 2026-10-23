@@ -1,0 +1,83 @@
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>ID</th>
+      <th>Requirement</th>
+      <th>Procedure</th>
+      <th>Expected result</th>
+      <th>Result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>F01</td>
+      <td>FR1</td>
+      <td>Open Explorer. Count and inspect map markers.</td>
+      <td>All 53 stations drawn, coloured by line</td>
+      <td>Pass</td>
+    </tr>
+    <tr>
+      <td>F02</td>
+      <td>FR2</td>
+      <td>Select BurJuman by clicking the map, then select Etisalat from the dropdown.</td>
+      <td>Stat cards and chart update both ways; selected station highlighted</td>
+      <td>Pass</td>
+    </tr>
+    <tr>
+      <td>F03</td>
+      <td>FR3</td>
+      <td>Read the history shown for BurJuman.</td>
+      <td>Series runs Jan 2018 - Aug 2023 (68 months)</td>
+      <td>Pass</td>
+    </tr>
+    <tr>
+      <td>F04</td>
+      <td>FR4</td>
+      <td>Set horizon slider to 1, 6 and 12.</td>
+      <td>Forecast length and the label (in months) match each setting</td>
+      <td>Pass</td>
+    </tr>
+    <tr>
+      <td>F05</td>
+      <td>FR5</td>
+      <td>Toggle SARIMA to LSTM at BurJuman; open Discovery Gardens.</td>
+      <td>Forecast changes; LSTM option disabled at Discovery Gardens</td>
+      <td>Pass</td>
+    </tr>
+    <tr>
+      <td>F06</td>
+      <td>FR6</td>
+      <td>Show SARIMA forecast for BurJuman.</td>
+      <td>Shaded confidence interval visible around the forecast</td>
+      <td>Pass</td>
+    </tr>
+    <tr>
+      <td>F07</td>
+      <td>FR7</td>
+      <td>Open BurJuman, then Etisalat.</td>
+      <td>BurJuman (SARIMA): 'SARIMA recommended (4.8% vs 9.7% MAPE)'; Etisalat (SARIMA): 'Showing SARIMA - LSTM performs better here (7.9% vs 6.1% MAPE)'; Etisalat (LSTM): 'LSTM recommended (7.9% vs 6.1% MAPE)'</td>
+      <td>Pass</td>
+    </tr>
+    <tr>
+      <td>F08</td>
+      <td>FR8</td>
+      <td>Open Comparison. Sort table by MAPE; page through.</td>
+      <td>Stations-won card SARIMA 49 · LSTM 4 (47 head-to-head plus 2 stations without an LSTM); 53 rows over 4 pages (15+15+15+8), sortable; four LSTM-win rows shaded</td>
+      <td>Pass</td>
+    </tr>
+    <tr>
+      <td>F09</td>
+      <td>FR9</td>
+      <td>Open Insights.</td>
+      <td>System trend with COVID shading; seasonal chart with '~21% swing - Mar peak, Sep trough'; EXPO, Route 2020 and World Trade Centre (SARIMA 10.7%, LSTM 21.3%) callouts</td>
+      <td>Pass</td>
+    </tr>
+    <tr>
+      <td>F10</td>
+      <td>FR10</td>
+      <td>Read the MAPE box plot on Comparison.</td>
+      <td>Cards 7.27% and 12.37%; box-plot medians 7.274 and 12.371 (matches Table 5.10)</td>
+      <td>Pass</td>
+    </tr>
+  </tbody>
+</table>

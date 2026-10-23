@@ -1,0 +1,6 @@
+Stage,Rows,Stations,Note
+Raw Dubai Pulse extract (loaded 10 Apr 2026),"33,776",57 labels,"613 distinct load timestamps; 28,834 duplicate station-month rows (NB01 cells 1, 3, 4)"
+"One row per station-month, latest load kept","4,942 (derived)",57 labels,"1,113 conflicting groups resolved by most recent load_timestamp (NB01 cell 7)"
+Exclude identical-timestamp conflicts,"4,889",57 labels,"53 groups, all Dec 2023; max/min ratio median 2.78, IQR 2.72-2.84, maximum 6.88 (NB01 cells 7-10)"
+Merge four station renames,"4,889",53 stations,No new duplicates created by the merge (NB01 cells 15-16)
+Restrict to validated window (Jan 2018 - Aug 2023),"3,405",53 stations,"Cutoff 2023-09-01; Sep-Nov 2023 absent in raw file, Dec 2023 excluded (NB04 cells 3-5, NB07 cell 10)"

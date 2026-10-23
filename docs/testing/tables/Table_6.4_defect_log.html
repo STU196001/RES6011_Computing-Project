@@ -1,0 +1,158 @@
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>ID</th>
+      <th>Stage</th>
+      <th>Defect</th>
+      <th>Root cause</th>
+      <th>Resolution</th>
+      <th>Preventive control</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>D01</td>
+      <td>Environment</td>
+      <td>Virtual environment unusable after project folder renamed</td>
+      <td>Absolute path stored in pip.exe</td>
+      <td>Deleted; rebuilt venv in the final folder</td>
+      <td>Never rename or move the project folder after creating the venv</td>
+    </tr>
+    <tr>
+      <td>D02</td>
+      <td>Environment</td>
+      <td>Incomplete virtual environment (no Activate.ps1)</td>
+      <td>Interrupted build</td>
+      <td>Deleted and recreated</td>
+      <td>Confirm the activation script exists after building</td>
+    </tr>
+    <tr>
+      <td>D03</td>
+      <td>Environment</td>
+      <td>Git not installed at project start</td>
+      <td>Tool not installed</td>
+      <td>Installed Git; initialised version control</td>
+      <td>Check tools before starting</td>
+    </tr>
+    <tr>
+      <td>D04</td>
+      <td>Data</td>
+      <td>FileNotFoundError reading the raw CSV</td>
+      <td>Filename contained dashes; notebook folder needed ../</td>
+      <td>Listed the folder with os.listdir and used the exact name</td>
+      <td>List or glob files; never retype names</td>
+    </tr>
+    <tr>
+      <td>D05</td>
+      <td>Data</td>
+      <td>Diagonal artefact in DMCC, Gold Souq, Jabal Ali and Mashreq plots</td>
+      <td>Rows unsorted after the rename merge</td>
+      <td>Re-sorted by station and date; master and model-ready files re-saved</td>
+      <td>Sort after every merge (test T01)</td>
+    </tr>
+    <tr>
+      <td>D06</td>
+      <td>Data</td>
+      <td>Burj Khalifa/Dubai Mall mismatched at three stages: raw label, missing line and coordinates, results key; win counts 46/5/3 instead of 47/4/2</td>
+      <td>Stray space in the label defeated exact-name merges</td>
+      <td>Normalised label; restored fields; re-ran station; re-merged results</td>
+      <td>Verify keys and row counts after every merge (test T03)</td>
+    </tr>
+    <tr>
+      <td>D07</td>
+      <td>Data</td>
+      <td>Geocoding failed for about 75% of station names</td>
+      <td>Nominatim could not resolve the names</td>
+      <td>Switched to OpenStreetMap Overpass; 14 names mapped manually</td>
+      <td>Check match rate before relying on a geocoder</td>
+    </tr>
+    <tr>
+      <td>D08</td>
+      <td>Data</td>
+      <td>Reported trips collapsed about 23 times from May 2024; Sep-Dec 2023 unusable</td>
+      <td>Change in the source's data collection or aggregation</td>
+      <td>Validated against RTA statistics; restricted window to Jan 2018 - Aug 2023</td>
+      <td>Validate source data against an external reference</td>
+    </tr>
+    <tr>
+      <td>D09</td>
+      <td>Modelling</td>
+      <td>Exhaustive SARIMA search failed at 7 stations</td>
+      <td>NaN gaps in series; AIC candidates lacked diversity</td>
+      <td>Linear interpolation; union of fixed and AIC candidates</td>
+      <td>Handle gaps before fitting</td>
+    </tr>
+    <tr>
+      <td>D10</td>
+      <td>Modelling</td>
+      <td>LSTM accuracy varied between runs (BurJuman 9.0% to 25.1%)</td>
+      <td>Few sequences and random initialisation</td>
+      <td>Averaged predictions over three runs</td>
+      <td>Average runs; report spread</td>
+    </tr>
+    <tr>
+      <td>D11</td>
+      <td>Environment</td>
+      <td>Notebook kernel showed NameError and froze after the LSTM run</td>
+      <td>Resource contention after a long run</td>
+      <td>Restarted kernel; Run All</td>
+      <td>Restart the kernel before long runs</td>
+    </tr>
+    <tr>
+      <td>D12</td>
+      <td>Dashboard</td>
+      <td>App printed 'Loaded...' then hung</td>
+      <td>Reloader subprocess failed on a path containing a space; app.run guard missing</td>
+      <td>use_reloader=False; added __main__ guard</td>
+      <td>Avoid spaces in project paths</td>
+    </tr>
+    <tr>
+      <td>D13</td>
+      <td>Dashboard</td>
+      <td>0 models loaded at start-up</td>
+      <td>../ prefix although the app runs from the project root</td>
+      <td>Removed ../ from model and CSV paths</td>
+      <td>Build paths from the app's own location</td>
+    </tr>
+    <tr>
+      <td>D14</td>
+      <td>Dashboard</td>
+      <td>'ID not found in layout' banner</td>
+      <td>Tab callback creates targets dynamically</td>
+      <td>suppress_callback_exceptions = True</td>
+      <td>Know which components are created dynamically</td>
+    </tr>
+    <tr>
+      <td>D15</td>
+      <td>Dashboard</td>
+      <td>Two model toggles on screen, one dead</td>
+      <td>Four stale python.exe processes serving old code (reloader off)</td>
+      <td>Killed all python.exe; restarted from a fresh terminal</td>
+      <td>Restart after every edit; check Task Manager</td>
+    </tr>
+    <tr>
+      <td>D16</td>
+      <td>Dashboard</td>
+      <td>Map labels clipped and overlapped; EXPO branch drawn diagonally; Al Fahidi and BurJuman at identical coordinates; uneven Green Line spacing</td>
+      <td>Default label positions, margins and initial coordinates</td>
+      <td>Per-station label sides; wider margin with cliponaxis=False; explicit right-angle bend; corrected schematic_positions.json</td>
+      <td>Set layout explicitly; inspect all stations</td>
+    </tr>
+    <tr>
+      <td>D17</td>
+      <td>Dashboard</td>
+      <td>Station labels overlapped on the Green, Red, BurJuman and Route 2020 rows at 1280 px (found by T15)</td>
+      <td>All labels in a horizontal run placed on the same side of the line</td>
+      <td>Alternated top/bottom label positions along each run; moved DMCC to the left of the trunk</td>
+      <td>Inspect every row of the map at the target width after any layout change</td>
+    </tr>
+    <tr>
+      <td>D18</td>
+      <td>Dashboard</td>
+      <td>Forecast not visible at horizon 1; confidence interval drawn as stray markers (found by T16)</td>
+      <td>Single-point forecast trace drawn with mode='lines'; interval trace used default markers</td>
+      <td>Forecast traces use lines+markers; interval shown as error bars at horizon 1 and as a band otherwise</td>
+      <td>Check horizon limits visually as well as by length (T06 only checked the number of values)</td>
+    </tr>
+  </tbody>
+</table>

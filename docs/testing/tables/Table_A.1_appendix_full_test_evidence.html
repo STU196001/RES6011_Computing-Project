@@ -1,0 +1,168 @@
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>ID</th>
+      <th>Requirement</th>
+      <th>Test</th>
+      <th>Method</th>
+      <th>Expected</th>
+      <th>Result</th>
+      <th>Evidence</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>T01</td>
+      <td>Data</td>
+      <td>Master file: 53 stations, one row per station-month, trips &gt; 0, rows sorted</td>
+      <td>Automated</td>
+      <td>All four conditions true</td>
+      <td>Pass</td>
+      <td>53 stations=True; no duplicate station-month=True; trips&gt;0=True; rows stored in date order=True</td>
+    </tr>
+    <tr>
+      <td>T02</td>
+      <td>Data</td>
+      <td>Model-ready file covers Jan 2018 - Aug 2023 with 3,405 rows</td>
+      <td>Automated</td>
+      <td>3,405 rows; window as stated</td>
+      <td>Pass</td>
+      <td>rows=3405 (expect 3,405); window 2018-01-01 to 2023-08-01</td>
+    </tr>
+    <tr>
+      <td>T03</td>
+      <td>Data</td>
+      <td>Station names identical across data and result files (53 / 51)</td>
+      <td>Automated</td>
+      <td>Name sets match</td>
+      <td>Pass</td>
+      <td>SARIMA names match data=True (diff []); LSTM names subset of data with 51 rows=True (n=51)</td>
+    </tr>
+    <tr>
+      <td>T04</td>
+      <td>FR4, FR5</td>
+      <td>All 53 SARIMA and 51 LSTM model artefacts load</td>
+      <td>Automated</td>
+      <td>53 and 51 models load without error</td>
+      <td>Pass</td>
+      <td>SARIMA loaded=53/53 in 0.39s; LSTM loaded=51/51 in 4.97s</td>
+    </tr>
+    <tr>
+      <td>T05</td>
+      <td>FR4</td>
+      <td>12-month SARIMA forecast is finite and non-negative at every station</td>
+      <td>Automated</td>
+      <td>No NaN, inf or negative values</td>
+      <td>Pass</td>
+      <td>53/53 stations give finite, non-negative 12-month SARIMA forecasts; failing: []</td>
+    </tr>
+    <tr>
+      <td>T06</td>
+      <td>FR4</td>
+      <td>Horizon limits (1 and 12 months), both models, saved scaler</td>
+      <td>Automated</td>
+      <td>Lengths 1 and 12; finite</td>
+      <td>Pass</td>
+      <td>BurJuman horizons 1 and 12 (saved scaler, as in app.py): [np.True_, np.True_]</td>
+    </tr>
+    <tr>
+      <td>T07</td>
+      <td>Model</td>
+      <td>Refit three stations: reported SARIMA holdout MAPE is reproducible</td>
+      <td>Automated</td>
+      <td>Within 0.5 MAPE points</td>
+      <td>Pass</td>
+      <td>refit vs reported MAPE (tolerance 0.5): [('BurJuman', 4.76, np.float64(4.76), np.True_), ('Etisalat', 7.87, np.float64(7.87), np.True_), ('Ibn Battuta', 9.62, np.float64(9.62), np.True_)]</td>
+    </tr>
+    <tr>
+      <td>T08</td>
+      <td>Model</td>
+      <td>Headline results recompute exactly as reported in Chapter 5</td>
+      <td>Automated</td>
+      <td>7.27 / 8.20 / 12.37 / 24.39; wins 47/4/2</td>
+      <td>Pass</td>
+      <td>MAPE ok=True; wins 47/4/2 ok=True (got {'SARIMA': np.int64(47), 'LSTM': np.int64(4), 'SARIMA (LSTM insufficient data)': np.int64(2)}); RMSE/MAE means ok=True</td>
+    </tr>
+    <tr>
+      <td>T09</td>
+      <td>Metrics</td>
+      <td>MAPE, RMSE, MAE functions match hand-calculated values</td>
+      <td>Automated</td>
+      <td>10.0 / 15.8114 / 15.0</td>
+      <td>Pass</td>
+      <td>MAPE=10.0000 (10), RMSE=15.8114 (15.8114), MAE=15.0000 (15)</td>
+    </tr>
+    <tr>
+      <td>T10</td>
+      <td>NFR1</td>
+      <td>Start-up model loading time below 3 s (proxy for page load)</td>
+      <td>Automated</td>
+      <td>&lt; 3 s</td>
+      <td>FAIL</td>
+      <td>model loading total 5.36s (limit 3s). PROXY ONLY: confirm page load in the browser (Section C) | Browser (Chrome, cache disabled): document load 564 ms; last Dash callback response, median of 2 reloads = 1343 ms (range 1269-1417 ms). Start-up model loading is a one-off before the first request, so page load is the operative NFR1 measure.</td>
+    </tr>
+    <tr>
+      <td>T11</td>
+      <td>NFR2</td>
+      <td>Forecast update time below 2 s (12-month horizon, LSTM, saved scaler)</td>
+      <td>Automated</td>
+      <td>&lt; 2 s</td>
+      <td>Pass</td>
+      <td>slowest LSTM 12-month update 1.02s (limit 2s); proxy, confirm in browser</td>
+    </tr>
+    <tr>
+      <td>T12</td>
+      <td>SR1, SR3, SR4, SR6</td>
+      <td>Static scan of app source: secrets, unsafe calls, debug flag, pickle paths</td>
+      <td>Automated</td>
+      <td>No secrets or unsafe calls; pickle only from models/</td>
+      <td>Pass</td>
+      <td>issues=none; debug=True present (acceptable locally; must be False if deployed); pickle loads to REVIEW MANUALLY (must read from the models folder only): ['sarima_models[st] = pickle.load(f)', 'lstm_scalers[st] = pickle.load(f)'] | Manual review: pickle loads (SARIMA models, LSTM scalers) use fixed relative paths models/sarima/&lt;name&gt;.pkl and models/lstm/&lt;name&gt;_scaler.pkl; Keras models load from models/lstm/&lt;name&gt;.keras. Paths are built at start-up from station names in the data file, never from user input. debug=True is for local running only.</td>
+    </tr>
+    <tr>
+      <td>T13</td>
+      <td>NFR3</td>
+      <td>LSTM disabled gracefully, SARIMA still works, at Discovery Gardens and The Gardens</td>
+      <td>Manual</td>
+      <td>Toggle disabled; forecast still shown</td>
+      <td>Pass</td>
+      <td>Discovery Gardens and The Gardens: LSTM option disabled, amber 'insufficient history' banner, SARIMA forecast with confidence band shown (T13.png, T13b.png)</td>
+    </tr>
+    <tr>
+      <td>T14</td>
+      <td>NFR4</td>
+      <td>No horizontal scroll at 1366 x 768 on all three tabs</td>
+      <td>Manual</td>
+      <td>scrollWidth &lt;= clientWidth on every tab</td>
+      <td>Pass</td>
+      <td>scrollWidth &gt; clientWidth = false on Explorer, Comparison and Insights at 1366x768 (T14_explorer.png, T14_comparison.png, T14_insights.png)</td>
+    </tr>
+    <tr>
+      <td>T15</td>
+      <td>NFR6</td>
+      <td>Map legible at 1280 px: all 53 labels visible and not overlapping</td>
+      <td>Manual</td>
+      <td>All labels readable</td>
+      <td>Pass</td>
+      <td>After D17 fix (labels alternated above/below lines, DMCC moved left), all 53 labels legible and non-overlapping at 1280px (T15.png); pre-fix state in T15_before.png</td>
+    </tr>
+    <tr>
+      <td>T16</td>
+      <td>Edge cases</td>
+      <td>Jabal Ali (25 interpolated months), EXPO (structural break), horizon 1 and 12 behave sensibly</td>
+      <td>Manual</td>
+      <td>No error; forecast and badge shown</td>
+      <td>Pass</td>
+      <td>Jabal Ali (25 interpolated months) and EXPO (structural break) at horizons 1 and 12: no error banner or blank chart; forecast, horizon label and recommendation banner shown (T16_jabalali_1.png, T16_jabalali_12.png, T16_expo_1.png, T16_expo_12.png). EXPO with LSTM at horizon 1 draws the forecast and warns that SARIMA performs better, 29.7% vs 435.1% MAPE (T16_expo_1_lstm.png). First run found D18, forecast invisible at horizon 1 (T16_jabalali_1_before.png); fixed and retested. Limitation: EXPO's 95% interval is very wide and extends below zero (T16_expo_12.png).</td>
+    </tr>
+    <tr>
+      <td>T17</td>
+      <td>SR2</td>
+      <td>Inputs restricted to allow-listed values (station list, slider 1-12)</td>
+      <td>Manual</td>
+      <td>Callbacks accept only listed stations and 1-12</td>
+      <td>Pass</td>
+      <td>Horizon input box: entering 99 clamps to 12 months (T17_1.png) and entering 0 clamps to 1 month (T17_2.png); forecast valid at both limits. Station dropdown: typing 'Centrepoint', which is not in the 53-station list, returns 'No options found' and the selection stays BurJuman (T17_3.png). Limitation: the callback itself does not re-validate its inputs, so the restriction is enforced by the UI components, not server-side.</td>
+    </tr>
+  </tbody>
+</table>

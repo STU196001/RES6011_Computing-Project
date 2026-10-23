@@ -1,0 +1,4 @@
+Version,Approach,Stations scored,Median MAPE (%),Mean MAPE (%),Failed,Note
+v1,"4 fixed, structurally diverse configurations; holdout-selected",53,7.31,8.75,0,Not a true grid search
+v2,auto_arima exhaustive search (stepwise=False); top-5 by AIC; holdout-selected,46,8.13,8.68,7,"search_failed where NaN gaps existed (e.g. Al Furjan, Discovery Gardens)"
+Final,Union of 4 fixed + top-5 AIC (up to 9 per station); linear interpolation of gaps,53,7.27,8.2,0,7 stations interpolated

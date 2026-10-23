@@ -1,0 +1,11 @@
+ID,Requirement,Procedure,Expected result,Result
+F01,FR1,Open Explorer. Count and inspect map markers.,"All 53 stations drawn, coloured by line",Pass
+F02,FR2,"Select BurJuman by clicking the map, then select Etisalat from the dropdown.",Stat cards and chart update both ways; selected station highlighted,Pass
+F03,FR3,Read the history shown for BurJuman.,Series runs Jan 2018 - Aug 2023 (68 months),Pass
+F04,FR4,"Set horizon slider to 1, 6 and 12.",Forecast length and the label (in months) match each setting,Pass
+F05,FR5,Toggle SARIMA to LSTM at BurJuman; open Discovery Gardens.,Forecast changes; LSTM option disabled at Discovery Gardens,Pass
+F06,FR6,Show SARIMA forecast for BurJuman.,Shaded confidence interval visible around the forecast,Pass
+F07,FR7,"Open BurJuman, then Etisalat.",BurJuman (SARIMA): 'SARIMA recommended (4.8% vs 9.7% MAPE)'; Etisalat (SARIMA): 'Showing SARIMA - LSTM performs better here (7.9% vs 6.1% MAPE)'; Etisalat (LSTM): 'LSTM recommended (7.9% vs 6.1% MAPE)',Pass
+F08,FR8,Open Comparison. Sort table by MAPE; page through.,"Stations-won card SARIMA 49 · LSTM 4 (47 head-to-head plus 2 stations without an LSTM); 53 rows over 4 pages (15+15+15+8), sortable; four LSTM-win rows shaded",Pass
+F09,FR9,Open Insights.,"System trend with COVID shading; seasonal chart with '~21% swing - Mar peak, Sep trough'; EXPO, Route 2020 and World Trade Centre (SARIMA 10.7%, LSTM 21.3%) callouts",Pass
+F10,FR10,Read the MAPE box plot on Comparison.,Cards 7.27% and 12.37%; box-plot medians 7.274 and 12.371 (matches Table 5.10),Pass

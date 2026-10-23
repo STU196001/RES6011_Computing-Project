@@ -1,0 +1,55 @@
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Source</th>
+      <th>Configuration</th>
+      <th>AIC</th>
+      <th>Holdout MAPE (%)</th>
+      <th>Note</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>pmdarima, full series (68 obs)</td>
+      <td>auto (0,1,0)(0,0,0,12)</td>
+      <td>1802.9</td>
+      <td>-</td>
+      <td>stepwise AIC winner</td>
+    </tr>
+    <tr>
+      <td>pmdarima, full series (68 obs)</td>
+      <td>forced (1,1,1)(1,1,1,12)</td>
+      <td>1509.6</td>
+      <td>-</td>
+      <td>much lower AIC</td>
+    </tr>
+    <tr>
+      <td>statsmodels, train only (62 obs)</td>
+      <td>(1,0,0)(0,0,0,12)</td>
+      <td>1645.0</td>
+      <td>5.1</td>
+      <td>holdout MAE 86,791</td>
+    </tr>
+    <tr>
+      <td>statsmodels, train only (62 obs)</td>
+      <td>(1,1,1)(1,1,1,12)</td>
+      <td>964.4</td>
+      <td>12.1</td>
+      <td>holdout MAE 191,695</td>
+    </tr>
+    <tr>
+      <td>statsmodels, train only (62 obs)</td>
+      <td>(1,1,0)(1,1,0,12)</td>
+      <td>1000.8</td>
+      <td>19.43</td>
+      <td>holdout MAE 309,488</td>
+    </tr>
+    <tr>
+      <td>v1 selection (holdout)</td>
+      <td>(1,1,1)(0,0,0,12)</td>
+      <td>-</td>
+      <td>4.8</td>
+      <td>chosen for BurJuman</td>
+    </tr>
+  </tbody>
+</table>

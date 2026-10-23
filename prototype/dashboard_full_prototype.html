@@ -1,0 +1,158 @@
+<div style="font-family: var(--font-sans);">
+  <div style="display:flex; gap:8px; margin-bottom:12px; border-bottom:0.5px solid var(--border); padding-bottom:8px;">
+    <div style="padding:6px 14px; border-radius:var(--radius); background:var(--bg-accent); color:var(--text-accent); font-size:13px; font-weight:500;">Explorer</div>
+    <div style="padding:6px 14px; border-radius:var(--radius); color:var(--text-secondary); font-size:13px;">Comparison</div>
+    <div style="padding:6px 14px; border-radius:var(--radius); color:var(--text-secondary); font-size:13px;">Insights</div>
+  </div>
+
+  <div style="display:flex; gap:16px; align-items:flex-start; flex-wrap:wrap;">
+    <div style="flex:1.5; min-width:420px; border:0.5px solid var(--border); border-radius:12px; padding:10px; overflow:auto; max-height:560px;">
+      <svg id="mapSvg" viewBox="0 0 820 1180" width="100%" style="min-width:520px;">
+        <g>
+          <circle cx="24" cy="16" r="5" fill="#D85A30"/><text x="34" y="20" class="ts">Red</text>
+          <circle cx="90" cy="16" r="5" fill="#639922"/><text x="100" y="20" class="ts">Green</text>
+          <circle cx="170" cy="16" r="5" fill="#7F77DD"/><text x="180" y="20" class="ts">Route 2020</text>
+          <circle cx="290" cy="16" r="5" fill="#EF9F27"/><text x="300" y="20" class="ts">Interchange</text>
+        </g>
+        <g id="lines" stroke-width="5" fill="none" stroke-linejoin="round" stroke-linecap="round">
+          <path d="M640,60 L580,60 L520,60 L460,60 L400,60 L340,60" stroke="#639922"/>
+          <path d="M340,60 L340,98 L340,136 L340,174 L340,212 L340,250 L340,288 L340,326 L340,364 L340,402" stroke="#639922"/>
+          <path d="M340,402 L400,402 L460,402 L520,402 L580,402" stroke="#639922"/>
+          <path d="M760,212 L700,212 L640,212 L580,212 L520,212 L460,212 L400,212 L340,212" stroke="#D85A30"/>
+          <path d="M340,212 L340,402 L340,438 L340,472 L340,506 L340,540 L340,574 L340,608 L340,642 L340,676 L340,710 L340,744 L340,778 L340,812 L340,846 L340,880 L340,914 L340,948" stroke="#D85A30"/>
+          <path d="M340,948 L340,982 L340,1016 L340,1050 L340,1084" stroke="#D85A30"/>
+          <path d="M340,948 L400,948 L460,948 L520,948 L580,948" stroke="#7F77DD"/>
+          <path d="M340,948 L400,996 L460,1036" stroke="#7F77DD"/>
+        </g>
+        <g id="stations"></g>
+      </svg>
+    </div>
+
+    <div style="flex:1; min-width:280px; display:flex; flex-direction:column; gap:10px; position:sticky; top:0;">
+      <div style="border:0.5px solid var(--border); border-radius:12px; padding:12px;">
+        <select id="picker" style="width:100%;"></select>
+      </div>
+      <div style="border:0.5px solid var(--border); border-radius:12px; padding:12px;">
+        <div id="chartTitle" class="ts" style="margin-bottom:6px;"></div>
+        <svg id="chart" viewBox="0 0 600 150" width="100%" style="max-height:150px;">
+          <path id="histPath" fill="none" stroke="var(--text-secondary)" stroke-width="2"/>
+          <path id="ciBand" fill="var(--text-accent)" opacity="0.12" stroke="none"/>
+          <path id="fcPath" fill="none" stroke-width="2" stroke-dasharray="5 4"/>
+        </svg>
+      </div>
+      <div style="border:0.5px solid var(--border); border-radius:12px; padding:12px; display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+        <span style="font-size:12px; color:var(--text-secondary);">Model</span>
+        <label style="display:flex; align-items:center; gap:4px; font-size:12px; cursor:pointer;"><input type="radio" name="model" value="sarima" checked>SARIMA</label>
+        <label id="lstmLabel" style="display:flex; align-items:center; gap:4px; font-size:12px; cursor:pointer;"><input type="radio" name="model" value="lstm">LSTM</label>
+        <span style="margin-left:auto; font-size:11px; color:var(--text-secondary);">Horizon: <span id="hzLabel">6</span>mo</span>
+        <input type="range" id="horizon" min="1" max="12" value="6" step="1" style="width:110px;">
+      </div>
+      <div id="badge" style="border-radius:var(--radius); padding:8px 12px; font-size:12px;"></div>
+      <div class="ts" style="font-size:11px; color:var(--text-muted);">Illustrative data — real dashboard plots actual fitted model output.</div>
+    </div>
+  </div>
+</div>
+<script>
+const GREEN = [["Etisalat",640,60],["Al Qusais",580,60],["Dubai Airport Free Zone",520,60],["Al Nahda",460,60],["Stadium",400,60],["Al Qiyadah",340,60],
+["Abu Hail",340,98],["Abu Baker Al Siddique",340,136],["Salah Al Din",340,174],["Union",340,212],["Baniyas Square",340,250],["Gold Souq",340,288],["Al Ras",340,326],["Al Ghubaiba",340,364],["Al Fahidi",340,402],["BurJuman",340,402],
+["Oud Metha",400,402],["Dubai Healthcare City",460,402],["Al Jadaf",520,402],["Creek",580,402]];
+const RED_TOP = [["Rashidiya",760,212],["Emirates",700,212],["Airport Terminal 3",640,212],["Airport Terminal 1",580,212],["GGICO",520,212],["Deira City Centre",460,212],["Al Rigga",400,212]];
+const RED_VERT = [["ADCB",340,438],["Al Jafiliya",340,472],["World Trade Centre",340,506],["Emirates Towers",340,540],["Financial Centre",340,574],["Burj Khalifa/Dubai Mall",340,608],["Business Bay",340,642],["Noor Bank",340,676],["First Abu Dhabi Bank",340,710],["Mall of the Emirates",340,744],["Mashreq",340,778],["Dubai Internet City",340,812],["Nakheel",340,846],["DAMAC Properties",340,880],["DMCC",340,914],["Jabal Ali",340,948]];
+const RED_MAIN = [["Ibn Battuta",340,982],["Energy",340,1016],["Danube",340,1050],["UAE Exchange",340,1084]];
+const JGE = [["The Gardens",400,948],["Discovery Gardens",460,948],["Al Furjan",520,948],["Jumeirah Golf Estates",580,948]];
+const EXPOB = [["Dubai Investment Park",400,996],["EXPO",460,1036]];
+const ALL = [...GREEN.map(s=>[...s,"#639922"]), ...RED_TOP.map(s=>[...s,"#D85A30"]), ...RED_VERT.map(s=>[...s,"#D85A30"]),
+             ...RED_MAIN.map(s=>[...s,"#D85A30"]), ...JGE.map(s=>[...s,"#7F77DD"]), ...EXPOB.map(s=>[...s,"#7F77DD"])];
+const INTERCHANGE = new Set(["Union","BurJuman"]);
+
+const KNOWN = {
+  "BurJuman": {hist:[70,68,72,75,74,78,80,82,85,88], sarima:[90,92,91,94,96,95,97,99,98,101,103,102], lstm:[95,100,108,115,122,130,138,145,150,158,165,170], mS:4.8, mL:9.7},
+  "Union": {hist:[55,54,56,58,57,59,61,60,62,64], sarima:[65,66,65,67,68,67,69,70,69,71,72,71], lstm:[66,68,64,70,66,72,68,74,70,76,72,78], mS:5.4, mL:9.0},
+  "Etisalat": {hist:[40,42,41,44,43,46,45,48,47,50], sarima:[50,49,52,48,53,47,54,46,55,45,56,44], lstm:[51,52,53,54,55,56,57,58,59,60,61,62], mS:7.9, mL:6.1},
+  "World Trade Centre": {hist:[45,60,42,58,40,55,38,52,36,50], sarima:[48,44,50,42,52,40,54,38,56,36,58,34], lstm:[46,50,44,52,42,54,40,56,38,58,36,60], mS:10.7, mL:21.3},
+  "EXPO": {hist:[2,3,5,20,60,95,40,15,10,12], sarima:[14,13,15,14,16,15,17,16,18,17,19,18], lstm:[20,35,55,80,110,140,170,190,210,230,250,270], mS:29.7, mL:435},
+  "Dubai Investment Park": {hist:[30,32,31,35,34,38,37,41,40,44], sarima:[45,43,47,42,48,41,49,40,50,39,51,38], lstm:[46,48,50,52,54,56,58,60,62,64,66,68], mS:13.4, mL:12.4}
+};
+const NO_LSTM = new Set(["Discovery Gardens","The Gardens"]);
+
+function seededRand(seed){ let s = 0; for(let i=0;i<seed.length;i++) s = (s*31 + seed.charCodeAt(i)) % 100000; return ()=>{ s = (s*1103515245+12345) % 2147483648; return (s/2147483648); }; }
+function genSeries(name){
+  const r = seededRand(name);
+  const base = 30 + r()*50;
+  const hist = []; let v = base;
+  for(let i=0;i<10;i++){ v += (r()-0.5)*10; hist.push(Math.max(5,v)); }
+  const sarima = []; let vs = hist[hist.length-1];
+  for(let i=0;i<12;i++){ vs += (r()-0.45)*6; sarima.push(Math.max(5,vs)); }
+  const lstm = []; let vl = hist[hist.length-1];
+  for(let i=0;i<12;i++){ vl += (r()-0.3)*14; lstm.push(Math.max(5,vl)); }
+  const mS = 5 + r()*8, mL = 8 + r()*14;
+  return {hist, sarima, lstm, mS, mL};
+}
+function dataFor(name){ return KNOWN[name] || genSeries(name); }
+
+let current = "BurJuman";
+function pathFrom(vals, xStart, xEnd, yMax){
+  const n = vals.length;
+  return vals.map((v,i)=>{ const x = xStart + (i/(n-1))*(xEnd-xStart); const y = 14 + (yMax-v)/yMax*110; return (i===0?"M":"L")+x.toFixed(1)+" "+y.toFixed(1); }).join(" ");
+}
+function render(){
+  const s = dataFor(current);
+  const noLstm = NO_LSTM.has(current);
+  document.getElementById('lstmLabel').style.opacity = noLstm ? 0.4 : 1;
+  document.getElementById('lstmLabel').querySelector('input').disabled = noLstm;
+  let model = document.querySelector('input[name="model"]:checked').value;
+  if(noLstm && model==='lstm'){ document.querySelector('input[value="sarima"]').checked = true; model='sarima'; }
+  const horizon = parseInt(document.getElementById('horizon').value);
+  document.getElementById('hzLabel').textContent = horizon;
+  document.getElementById('chartTitle').textContent = current + " Metro Station";
+  const yMax = Math.max(...s.hist, ...s.sarima, ...s.lstm) * 1.05;
+  document.getElementById('histPath').setAttribute('d', pathFrom(s.hist, 20, 300, yMax));
+  const fc = (model==='sarima'?s.sarima:s.lstm).slice(0, horizon);
+  const fcFull = [s.hist[s.hist.length-1], ...fc];
+  document.getElementById('fcPath').setAttribute('d', pathFrom(fcFull, 300, 300+horizon*24, yMax));
+  document.getElementById('fcPath').setAttribute('stroke', model==='sarima' ? 'var(--text-accent)' : '#D85A30');
+  if(model==='sarima'){
+    const upper = fcFull.map(v=>v*1.12), lower = fcFull.map(v=>v*0.88), n = fcFull.length, step=(horizon*24)/(n-1);
+    let d = "M"+300+" "+(14+(yMax-lower[0])/yMax*110);
+    upper.forEach((v,i)=>{ const x=300+i*step; d+=" L"+x+" "+(14+(yMax-v)/yMax*110); });
+    for(let i=n-1;i>=0;i--){ const x=300+i*step; d+=" L"+x+" "+(14+(yMax-lower[i])/yMax*110); }
+    d+=" Z";
+    document.getElementById('ciBand').setAttribute('d', d); document.getElementById('ciBand').style.display='block';
+  } else { document.getElementById('ciBand').style.display='none'; }
+  const mape = model==='sarima'?s.mS:s.mL;
+  const winner = s.mS < s.mL ? 'SARIMA' : 'LSTM';
+  const badge = document.getElementById('badge');
+  if(noLstm){
+    badge.style.background = 'var(--bg-warning)'; badge.style.color = 'var(--text-warning)';
+    badge.textContent = 'LSTM unavailable for this station (insufficient history) — showing SARIMA';
+  } else {
+    const isRec = (model==='sarima' && winner==='SARIMA') || (model==='lstm' && winner==='LSTM');
+    badge.style.background = isRec ? 'var(--bg-success)' : 'var(--bg-warning)';
+    badge.style.color = isRec ? 'var(--text-success)' : 'var(--text-warning)';
+    badge.textContent = isRec ? `${winner} recommended (${mape.toFixed(1)}% MAPE)` : `Showing ${model.toUpperCase()} (${mape.toFixed(1)}% MAPE) — ${winner} performs better here`;
+  }
+  document.querySelectorAll('.stndot').forEach(c=>{
+    const isSel = c.dataset.name===current;
+    c.setAttribute('stroke-width', isSel?'3':'2');
+    c.setAttribute('r', isSel ? (INTERCHANGE.has(current)?10:7) : (INTERCHANGE.has(c.dataset.name)?8:5));
+  });
+  document.getElementById('picker').value = current;
+}
+function colorFor(name, lineColor){ return INTERCHANGE.has(name) ? "#EF9F27" : lineColor; }
+const g = document.getElementById('stations');
+const picker = document.getElementById('picker');
+ALL.forEach(([name,x,y,color])=>{
+  const c = document.createElementNS("http://www.w3.org/2000/svg","circle");
+  c.setAttribute("cx",x); c.setAttribute("cy",y); c.setAttribute("r", INTERCHANGE.has(name)?8:5);
+  c.setAttribute("fill", colorFor(name,color)); c.classList.add("stndot"); c.dataset.name = name;
+  c.style.cursor = "pointer"; c.style.stroke = "var(--surface-2)"; c.style.strokeWidth = "2";
+  c.addEventListener("click", ()=>{ current = name; render(); });
+  g.appendChild(c);
+  const opt = document.createElement('option'); opt.value = name; opt.textContent = name + " Metro Station";
+  picker.appendChild(opt);
+});
+picker.addEventListener('change', e=>{ current = e.target.value; render(); });
+document.querySelectorAll('input[name="model"]').forEach(r=>r.addEventListener('change', render));
+document.getElementById('horizon').addEventListener('input', render);
+render();
+</script>

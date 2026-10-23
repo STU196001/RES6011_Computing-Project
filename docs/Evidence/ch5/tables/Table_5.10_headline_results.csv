@@ -1,0 +1,7 @@
+Measure,SARIMA,LSTM
+Stations modelled,53 of 53,"51 of 53 (Discovery Gardens, The Gardens: 40 months < 42 minimum)"
+Median MAPE (%),7.27,12.37
+Mean MAPE (%),8.2,24.39 (EXPO alone: 435.1)
+Mean RMSE,"45,261","81,632"
+Mean MAE,"37,692","71,748"
+Stations won,47 outright + 2 by default,4

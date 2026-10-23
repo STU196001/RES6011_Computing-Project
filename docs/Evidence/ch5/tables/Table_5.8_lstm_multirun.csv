@@ -1,0 +1,5 @@
+Protocol,Runs,MAPE (%),Spread
+Single run (NB05 cell 3),1,9.1,-
+Five independent runs (NB05 cell 4),5,"17.8, 14.2, 9.0, 25.1, 9.9","mean 15.2, sd 5.9"
+"3-run prediction average, function test (NB05 cell 5)",3,8.5,sd across runs 2.5
+"3-run prediction average, production run (NB05 cell 6)",3,9.7,sd across runs 2.3

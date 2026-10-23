@@ -1,0 +1,6 @@
+SARIMA error band,Stations,SARIMA median MAPE (%),LSTM median MAPE (%),LSTM wins
+Below 6%,9,5.19,9.98,0
+6% to under 8%,26,7.13,11.59,2
+8% to under 10%,10,8.55,14.84,1
+10% and above,8,13.27,29.8,1
+All stations,53,7.27,12.37,4

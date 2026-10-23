@@ -1,0 +1,18 @@
+ID,Requirement,Test,Method,Expected,Result
+T01,Data,"Master file: 53 stations, one row per station-month, trips > 0, rows sorted",Automated,All four conditions true,Pass
+T02,Data,"Model-ready file covers Jan 2018 - Aug 2023 with 3,405 rows",Automated,"3,405 rows; window as stated",Pass
+T03,Data,Station names identical across data and result files (53 / 51),Automated,Name sets match,Pass
+T04,"FR4, FR5",All 53 SARIMA and 51 LSTM model artefacts load,Automated,53 and 51 models load without error,Pass
+T05,FR4,12-month SARIMA forecast is finite and non-negative at every station,Automated,"No NaN, inf or negative values",Pass
+T06,FR4,"Horizon limits (1 and 12 months), both models, saved scaler",Automated,Lengths 1 and 12; finite,Pass
+T07,Model,Refit three stations: reported SARIMA holdout MAPE is reproducible,Automated,Within 0.5 MAPE points,Pass
+T08,Model,Headline results recompute exactly as reported in Chapter 5,Automated,7.27 / 8.20 / 12.37 / 24.39; wins 47/4/2,Pass
+T09,Metrics,"MAPE, RMSE, MAE functions match hand-calculated values",Automated,10.0 / 15.8114 / 15.0,Pass
+T10,NFR1,Start-up model loading time below 3 s (proxy for page load),Automated,< 3 s,FAIL
+T11,NFR2,"Forecast update time below 2 s (12-month horizon, LSTM, saved scaler)",Automated,< 2 s,Pass
+T12,"SR1, SR3, SR4, SR6","Static scan of app source: secrets, unsafe calls, debug flag, pickle paths",Automated,No secrets or unsafe calls; pickle only from models/,Pass
+T13,NFR3,"LSTM disabled gracefully, SARIMA still works, at Discovery Gardens and The Gardens",Manual,Toggle disabled; forecast still shown,Pass
+T14,NFR4,No horizontal scroll at 1366 x 768 on all three tabs,Manual,scrollWidth <= clientWidth on every tab,Pass
+T15,NFR6,Map legible at 1280 px: all 53 labels visible and not overlapping,Manual,All labels readable,Pass
+T16,Edge cases,"Jabal Ali (25 interpolated months), EXPO (structural break), horizon 1 and 12 behave sensibly",Manual,No error; forecast and badge shown,Pass
+T17,SR2,"Inputs restricted to allow-listed values (station list, slider 1-12)",Manual,Callbacks accept only listed stations and 1-12,Pass

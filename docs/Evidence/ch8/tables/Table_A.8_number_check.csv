@@ -1,0 +1,47 @@
+Claim in text,Text value,Your data,Result
+SARIMA median MAPE,7.27,7.274,OK
+LSTM median MAPE,12.37,12.371,OK
+LSTM mean MAPE,24.39,24.394,OK
+SARIMA Q1,6.45,6.528,CHECK
+SARIMA Q3,8.52,8.489,CHECK
+LSTM Q1,9.76,9.836,CHECK
+LSTM Q3,18.01,17.909,CHECK
+stations with SARIMA MAPE < 10%,45,45.0,OK
+SARIMA mean RMSE,45261,45261.153,OK
+LSTM mean RMSE,81632,81631.609,OK
+SARIMA mean MAE,37692,37692.056,OK
+LSTM mean MAE,71748,71747.992,OK
+SARIMA best station,Gold Souq,Gold Souq,OK
+SARIMA best MAPE,4.5,4.494,OK
+SARIMA worst station,EXPO,EXPO,OK
+SARIMA worst MAPE,29.7,29.652,OK
+SARIMA wins (51 stations),47,47.0,OK
+LSTM wins,4,4.0,OK
+every LSTM win margin < 2 points,True,1.0,OK
+LSTM wins with SARIMA error 7.3-9.6% (text: three),3,3.0,OK
+stations where LSTM lost by about one point or less (text: five),5,5.0,OK
+Wilcoxon p < 0.001 (1 = true),1,1.0,OK
+rank-biserial r,0.95,0.955,OK
+BurJuman SARIMA rank (best=1),3,3.0,OK
+World Trade Centre rank from worst,8,8.0,OK
+BurJuman SARIMA MAPE,4.8,4.756,OK
+BurJuman LSTM MAPE,9.7,9.693,OK
+World Trade Centre SARIMA MAPE,10.7,10.692,OK
+World Trade Centre LSTM MAPE,21.3,21.293,OK
+EXPO SARIMA MAPE,29.7,29.652,OK
+EXPO LSTM MAPE,435.1,435.095,OK
+Jumeirah Golf Estates SARIMA MAPE,10.9,10.933,OK
+Jumeirah Golf Estates LSTM MAPE,61.2,61.162,OK
+Energy SARIMA MAPE,14.2,14.168,OK
+Energy LSTM MAPE,90.4,90.397,OK
+2018-19 minimum within 14.5-15.5M,1,1.0,OK
+2018-19 maximum within 17.5-18.8M,1,1.0,OK
+2023 minimum within 23.5-25.5M,1,1.0,OK
+2023 maximum within 28.5-29.8M,1,1.0,OK
+peak month is March 2022,2022-03,2022-03,OK
+seasonal swing (percent of station mean),21,20.832,OK
+peak month (3 = March),3,3.0,OK
+trough month (9 = September),9,9.0,OK
+median index March,1.13,1.13,OK
+median index September,0.87,0.867,OK
+June-September medians all below 1 (1 = true),1,1.0,OK

@@ -1,0 +1,8 @@
+Family (final selection),Stations
+"non-seasonal, d=1",26
+seasonal,23
+"non-seasonal, d=0",4
+"v1: nonseasonal_arima111 (1,1,1)",30
+"v1: nonseasonal_ar1 (1,0,0)",14
+v1: seasonal_111_111,8
+v1: seasonal_110_110,1

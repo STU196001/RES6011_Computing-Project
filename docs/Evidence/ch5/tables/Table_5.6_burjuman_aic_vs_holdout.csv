@@ -1,0 +1,7 @@
+Source,Configuration,AIC,Holdout MAPE (%),Note
+"pmdarima, full series (68 obs)","auto (0,1,0)(0,0,0,12)",1802.9,-,stepwise AIC winner
+"pmdarima, full series (68 obs)","forced (1,1,1)(1,1,1,12)",1509.6,-,much lower AIC
+"statsmodels, train only (62 obs)","(1,0,0)(0,0,0,12)",1645.0,5.1,"holdout MAE 86,791"
+"statsmodels, train only (62 obs)","(1,1,1)(1,1,1,12)",964.4,12.1,"holdout MAE 191,695"
+"statsmodels, train only (62 obs)","(1,1,0)(1,1,0,12)",1000.8,19.43,"holdout MAE 309,488"
+v1 selection (holdout),"(1,1,1)(0,0,0,12)",-,4.8,chosen for BurJuman

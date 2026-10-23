@@ -1,0 +1,5 @@
+Station,LSTM MAPE (%),sd across runs,Diagnosis (evidence)
+EXPO,435.1,74.1,"Not yet diagnosed - run the EXPO diagnostic cell in Section B. Series peaks at 2,275,405 (Mar 2022) then falls sharply."
+Energy,90.4,5.4,"Debug run (NB05 cell 10): predictions rose from ~51k to ~104k while actuals fell from 40.9k to 30.6k, although every input window held actual values."
+Jumeirah Golf Estates,61.2,8.3,Not investigated further (lowest-volume station).
+Nakheel,35.9,11.6,Not investigated further; highest run-to-run spread.

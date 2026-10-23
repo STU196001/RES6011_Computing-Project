@@ -1,0 +1,36 @@
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Station</th>
+      <th>LSTM MAPE (%)</th>
+      <th>sd across runs</th>
+      <th>Diagnosis (evidence)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>EXPO</td>
+      <td>435.1</td>
+      <td>74.1</td>
+      <td>Not yet diagnosed - run the EXPO diagnostic cell in Section B. Series peaks at 2,275,405 (Mar 2022) then falls sharply.</td>
+    </tr>
+    <tr>
+      <td>Energy</td>
+      <td>90.4</td>
+      <td>5.4</td>
+      <td>Debug run (NB05 cell 10): predictions rose from ~51k to ~104k while actuals fell from 40.9k to 30.6k, although every input window held actual values.</td>
+    </tr>
+    <tr>
+      <td>Jumeirah Golf Estates</td>
+      <td>61.2</td>
+      <td>8.3</td>
+      <td>Not investigated further (lowest-volume station).</td>
+    </tr>
+    <tr>
+      <td>Nakheel</td>
+      <td>35.9</td>
+      <td>11.6</td>
+      <td>Not investigated further; highest run-to-run spread.</td>
+    </tr>
+  </tbody>
+</table>
